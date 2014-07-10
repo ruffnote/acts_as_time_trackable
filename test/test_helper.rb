@@ -1,3 +1,8 @@
+require 'simplecov'
+SimpleCov.start do
+  add_filter "/test/"
+end
+
 # Configure Rails Environment
 ENV["RAILS_ENV"] = "test"
 
@@ -14,9 +19,3 @@ if ActiveSupport::TestCase.method_defined?(:fixture_path=)
   ActiveSupport::TestCase.fixture_path = File.expand_path("../fixtures", __FILE__)
 end
 
-def setup_models
-  @task = Task.create
-  @task2 = Task.create
-  @user = User.create
-  @user2 = User.create
-end
