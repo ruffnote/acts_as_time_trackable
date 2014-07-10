@@ -11,6 +11,10 @@ Time tracking your any model.
 ```
 # Gemfile
 gem 'acts_as_time_trackable', github: 'ruffnote/acts_as_time_trackable'
+
+$ bundle
+$ rails g time_trackable
+$ rake db:migrate
 ```
 
 ## Usage
