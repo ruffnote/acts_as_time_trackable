@@ -92,6 +92,12 @@ Logs
 @time_entry.duration # => stopped_at - started_at
 ```
 
+## Test
+
+```
+$ rake
+```
+
 ## License
 
 MIT
