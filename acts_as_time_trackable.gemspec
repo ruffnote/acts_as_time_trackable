@@ -7,11 +7,11 @@ require "acts_as_time_trackable/version"
 Gem::Specification.new do |s|
   s.name        = "acts_as_time_trackable"
   s.version     = ActsAsTimeTrackable::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of ActsAsTimeTrackable."
-  s.description = "TODO: Description of ActsAsTimeTrackable."
+  s.authors     = ["Ruffnote Inc."]
+  s.email       = ["info@ruffnote.com"]
+  s.homepage    = "https://github.com/ruffnote/acts_as_time_trackable"
+  s.summary     = "Time tracking your model"
+  s.description = s.summary
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]

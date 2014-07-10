@@ -7,6 +7,10 @@ module ActsAsTimeTrackable
       validates :time_trackable, presence: true
       validates :time_tracker, presence: true
       validates :started_at, presence: true
+
+      def duration
+        (stopped_at.presence || Time.now) - started_at
+      end
     end
   end
 end
