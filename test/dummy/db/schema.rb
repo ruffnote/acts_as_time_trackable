@@ -11,13 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140710015225) do
+ActiveRecord::Schema.define(version: 20140710070824) do
 
   create_table "tasks", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "time_entries", force: true do |t|
+    t.datetime "started_at"
+    t.datetime "stopped_at"
+    t.integer  "time_trackable_id"
+    t.string   "time_trackable_type"
+    t.integer  "time_tracker_id"
+    t.string   "time_tracker_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "time_entries", ["started_at"], name: "index_time_entries_on_started_at"
+  add_index "time_entries", ["stopped_at"], name: "index_time_entries_on_stopped_at"
+  add_index "time_entries", ["time_trackable_id", "time_trackable_type"], name: "index_time_entries_on_time_trackable"
+  add_index "time_entries", ["time_tracker_id", "time_tracker_type"], name: "index_time_entries_on_time_tracker"
 
   create_table "users", force: true do |t|
     t.string   "name"

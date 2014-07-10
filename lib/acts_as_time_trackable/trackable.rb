@@ -10,6 +10,8 @@ module ActsAsTimeTrackable
 
     module ClassMethods
       def acts_as_time_trackable(options = {})
+        has_many :time_entries, as: :time_trackable, dependent: :destroy
+
         include ActsAsTimeTrackable::Trackable::LocalInstanceMethods
       end
     end
@@ -18,6 +20,19 @@ module ActsAsTimeTrackable
       def time_trackable?
         true
       end
+
+      def time_tracking?
+        current_entries.present?
+      end
+
+      def time_trackers
+        current_entries.map { |te| te.time_tracker }
+      end
+
+      private
+        def current_entries
+          time_entries.where(stopped_at: nil)
+        end
     end
   end
 end

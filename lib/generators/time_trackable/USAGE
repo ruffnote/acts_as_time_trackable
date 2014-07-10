@@ -1,0 +1,9 @@
+Description:
+    Installation of the acts_as_time_trackable gem. Adds models and db migrations to your app.
+
+Example:
+    rails generate time_trackable
+
+    This will create:
+        app/models/time_entry.rb
+        db/migrate/create_time_entries.rb

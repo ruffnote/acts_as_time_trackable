@@ -13,3 +13,10 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 if ActiveSupport::TestCase.method_defined?(:fixture_path=)
   ActiveSupport::TestCase.fixture_path = File.expand_path("../fixtures", __FILE__)
 end
+
+def setup_models
+  @task = Task.create
+  @task2 = Task.create
+  @user = User.create
+  @user2 = User.create
+end
