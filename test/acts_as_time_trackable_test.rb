@@ -14,5 +14,12 @@ class ActsAsTimeTrackableTest < ActiveSupport::TestCase
     assert_equal true, @task.time_trackable?
     assert_equal false, @user.time_trackable?
   end
+
+  test "time_tracker?" do
+    assert_equal false, @task.time_tracker?
+    assert_equal true, @user.time_tracker?
+  end
+
+
 end
 

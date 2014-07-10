@@ -19,7 +19,6 @@ module ActsAsTimeTrackable
         true
       end
     end
-
   end
 end
  
