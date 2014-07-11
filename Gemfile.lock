@@ -3,6 +3,7 @@ PATH
   specs:
     acts_as_time_trackable (0.0.1)
       rails (>= 4.0.0)
+      time_diff (~> 0.3.0)
 
 GEM
   remote: https://rubygems.org/
@@ -84,6 +85,9 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
+    time_diff (0.3.0)
+      activesupport
+      i18n
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
