@@ -61,7 +61,9 @@ Start
 @user.start_time_track(@task)
 
 @task.time_tracking? # => true
+@task.time_tracking?(@user) # => true
 @user.time_tracking? # => true
+@user.time_tracking?(@task) # => true
 
 @task.time_trackers # => [@user]
 @user.time_trackable # => @task

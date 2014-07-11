@@ -12,15 +12,17 @@ class TrackableTest < ActsAsTimeTrackableTest
 
   test 'time_track' do
     @user.start_time_track(@task)
-    @user2.start_time_track(@task)
 
     assert_equal true, @task.time_tracking?
-    assert_equal [@user, @user2], @task.time_trackers
+    assert_equal [@user], @task.time_trackers
+    assert_equal true, @task.time_tracking?(@user)
+    assert_equal false, @task.time_tracking?(@user2)
     
     @user.stop_time_track
-    @user2.stop_time_track
     assert_equal false, @task.time_tracking?
     assert_equal [], @task.time_trackers
+    assert_equal false, @task.time_tracking?(@user)
+    assert_equal false, @task.time_tracking?(@user2)
   end
 
   test 'time_entries' do

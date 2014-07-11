@@ -21,8 +21,13 @@ module ActsAsTimeTrackable
         true
       end
 
-      def time_tracking?
-        current_entries.present?
+      def time_tracking?(tracker = nil)
+        entries = current_entries
+        if tracker.nil?
+          entries.present?
+        else
+          entries.exists?(time_tracker_id: tracker.id, time_tracker_type: tracker.class.name)
+        end
       end
 
       def time_trackers
