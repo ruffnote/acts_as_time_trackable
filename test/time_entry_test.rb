@@ -24,7 +24,12 @@ class TimeEntryTest < ActiveSupport::TestCase
 
   test 'time_traking' do
     @user.start_time_track(@task)
-    assert_equal @task.time_entries.first, TimeEntry.time_tracking.first
+    @time_entry = @task.time_entries.first
+    assert_equal @time_entry, TimeEntry.time_tracking.first
+    assert_equal nil, TimeEntry.stopped.first
+    @time_entry.stop
+    assert_equal nil, TimeEntry.time_tracking.first
+    assert_equal @time_entry, TimeEntry.stopped.first
   end
 end
 

@@ -9,6 +9,7 @@ module ActsAsTimeTrackable
       validates :started_at, presence: true
 
       scope :time_tracking, -> { where(stopped_at: nil) }
+      scope :stopped, -> { where.not(stopped_at: nil) }
 
       def duration
         (stopped_at.presence || Time.now) - started_at
@@ -16,6 +17,10 @@ module ActsAsTimeTrackable
 
       def formatted_duration(format = '%H:%M:%S')
         Duration.new(duration).format(format)
+      end
+
+      def stop
+        update!(stopped_at: Time.now)
       end
     end
   end

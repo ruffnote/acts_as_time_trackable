@@ -95,6 +95,8 @@ Logs
 @time_entry.formatted_duration # => '00:00:01'
 
 TimeEntry.time_tracking.first # => @time_entry
+@time_entry.stop
+TimeEntry.stopped.first # => @time_entry
 ```
 
 ## Test

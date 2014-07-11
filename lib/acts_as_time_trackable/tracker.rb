@@ -27,7 +27,7 @@ module ActsAsTimeTrackable
       end
 
       def stop_time_track
-        current_entry.try(:update!, { stopped_at: Time.now })
+        current_entry.try(:stop)
       end
 
       def time_tracking?(trackable = nil)
