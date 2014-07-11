@@ -93,6 +93,8 @@ Logs
 @time.entry.stopped_at # => datetime
 @time_entry.duration # => stopped_at - started_at
 @time_entry.formatted_duration # => '00:00:01'
+
+TimeEntry.time_tracking.first # => @time_entry
 ```
 
 ## Test

@@ -8,6 +8,8 @@ module ActsAsTimeTrackable
       validates :time_tracker, presence: true
       validates :started_at, presence: true
 
+      scope :time_tracking, -> { where(stopped_at: nil) }
+
       def duration
         (stopped_at.presence || Time.now) - started_at
       end

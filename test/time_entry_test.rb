@@ -21,5 +21,10 @@ class TimeEntryTest < ActiveSupport::TestCase
     @time_entry.stopped_at = 30.seconds.ago 
     assert_equal '00:02:30', @time_entry.formatted_duration
   end
+
+  test 'time_traking' do
+    @user.start_time_track(@task)
+    assert_equal @task.time_entries.first, TimeEntry.time_tracking.first
+  end
 end
 
