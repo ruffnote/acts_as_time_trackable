@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency "rails", ">= 4.0.0"
 
-  s.add_dependency "ruby-duration", "~> 3.1.0"
+  s.add_dependency "time_diff", "~> 0.3.0"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "simplecov"

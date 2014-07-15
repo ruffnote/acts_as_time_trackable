@@ -3,7 +3,7 @@ PATH
   specs:
     acts_as_time_trackable (0.0.1)
       rails (>= 4.0.0)
-      ruby-duration (~> 3.1.0)
+      time_diff (~> 0.3.0)
 
 GEM
   remote: https://rubygems.org/
@@ -40,7 +40,6 @@ GEM
     erubis (2.7.0)
     hike (1.2.3)
     i18n (0.6.11)
-    iso8601 (0.5.0)
     json (1.8.1)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -68,10 +67,6 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.3.2)
-    ruby-duration (3.1.0)
-      activesupport (>= 3.0.0)
-      i18n
-      iso8601
     simplecov (0.8.2)
       docile (~> 1.1.0)
       multi_json
@@ -90,6 +85,9 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
+    time_diff (0.3.0)
+      activesupport
+      i18n
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
