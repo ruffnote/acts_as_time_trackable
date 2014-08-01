@@ -38,6 +38,10 @@ module ActsAsTimeTrackable
         time_entries.stopped.reduce(0) {|sum, e| sum + e.duration }
       end
 
+      def formatted_total_time(format = '%h:%m:%s')
+        Time.diff(total_time.seconds.ago, Time.now, format)[:diff]
+      end
+
       private
         def current_entries
           time_entries.time_tracking
