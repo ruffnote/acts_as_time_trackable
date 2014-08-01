@@ -34,9 +34,13 @@ module ActsAsTimeTrackable
         current_entries.map { |te| te.time_tracker }
       end
 
+      def total_time
+        time_entries.stopped.reduce(0) {|sum, e| sum + e.duration }
+      end
+
       private
         def current_entries
-          time_entries.where(stopped_at: nil)
+          time_entries.time_tracking
         end
     end
   end

@@ -26,9 +26,32 @@ class TrackableTest < ActsAsTimeTrackableTest
   end
 
   test 'time_entries' do
+
     @user.start_time_track(@task)
     @user2.start_time_track(@task)
     assert_equal [@user, @user2], @task.time_entries.map { |te| te.time_tracker }
+  end
+
+  test 'total_time' do
+    assert_equal 0, @task.total_time
+
+    @user.start_time_track(@task)
+    @user.stop_time_track
+    @time_entry_1 = @user.time_entries.last
+
+    @time_entry_1.started_at = 3.minutes.ago
+    @time_entry_1.stopped_at = 30.seconds.ago
+    @time_entry_1.save
+
+    @user.start_time_track(@task)
+    @user.stop_time_track
+    @time_entry_2 = @user.time_entries.last
+
+    @time_entry_2.started_at = (3.minutes + 1.days).ago
+    @time_entry_2.stopped_at = 30.seconds.ago
+    @time_entry_2.save
+
+    assert_equal @time_entry_1.duration + @time_entry_2.duration, @task.total_time
   end
 end
 

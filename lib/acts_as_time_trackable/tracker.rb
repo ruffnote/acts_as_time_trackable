@@ -46,7 +46,7 @@ module ActsAsTimeTrackable
 
       private
         def current_entry
-          time_entries.where(stopped_at: nil).last
+          time_entries.time_tracking.last
         end
     end
   end
