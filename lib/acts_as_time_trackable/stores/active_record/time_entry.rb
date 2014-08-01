@@ -32,7 +32,7 @@ module ActsAsTimeTrackable
         def stopped_at_must_be_after_started_at
           return if started_at.blank? || stopped_at.blank?
 
-          if started_at >= stopped_at
+          if started_at > stopped_at
             errors.add(:stopped_at, 'must be after the started at')
           end
         end
