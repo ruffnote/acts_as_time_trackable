@@ -44,10 +44,9 @@ module ActsAsTimeTrackable
         current_entry.try(:time_trackable)
       end
 
-      private
-        def current_entry
-          time_entries.time_tracking.last
-        end
+      def current_entry
+        time_entries.time_tracking.last
+      end
     end
   end
 end

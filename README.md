@@ -102,6 +102,9 @@ TimeEntry.stopped.first # => @time_entry
 ## Test
 
 ```
+$ cd test/dummy/
+$ bin/rake db:create db:migrate
+$ cd ../../
 $ rake
 ```
 
