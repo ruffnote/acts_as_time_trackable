@@ -42,10 +42,9 @@ module ActsAsTimeTrackable
         Time.diff(total_time.seconds.ago, Time.now, format)[:diff]
       end
 
-      private
-        def current_entries
-          time_entries.time_tracking
-        end
+      def current_entries
+        time_entries.time_tracking
+      end
     end
   end
 end
