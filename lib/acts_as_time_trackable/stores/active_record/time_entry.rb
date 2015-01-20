@@ -24,6 +24,10 @@ module ActsAsTimeTrackable
         update!(stopped_at: Time.now)
       end
 
+      def stopped?
+        stopped_at.present?
+      end
+
       private
         def stopped_at_or_now
           (stopped_at.presence || Time.now)
