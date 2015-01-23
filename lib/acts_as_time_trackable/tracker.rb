@@ -22,7 +22,7 @@ module ActsAsTimeTrackable
       end
 
       def start_time_track(trackable)
-        return if trackable == current_entry
+        return if trackable == time_trackable
         ActiveRecord::Base.transaction do
           stop_time_track
           time_entries.create!(time_trackable: trackable, started_at: Time.now)
