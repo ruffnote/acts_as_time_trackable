@@ -1,5 +1,7 @@
 # ActsAsTimeTrackable
 
+[![Circle CI](https://circleci.com/gh/ruffnote/acts_as_time_trackable.svg?style=svg)](https://circleci.com/gh/ruffnote/acts_as_time_trackable) [![Code Climate](https://codeclimate.com/github/ruffnote/acts_as_time_trackable/badges/gpa.svg)](https://codeclimate.com/github/ruffnote/acts_as_time_trackable)
+
 Time tracking your any model.
 
 ## Requirement
