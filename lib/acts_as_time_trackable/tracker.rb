@@ -29,8 +29,8 @@ module ActsAsTimeTrackable
         end
       end
 
-      def stop_time_track
-        current_entry.try(:stop)
+      def stop_time_track(trackable = nil)
+        current_entry.try(:stop) if trackable.nil? || trackable == current_entry
       end
 
       def time_tracking?(trackable = nil)
