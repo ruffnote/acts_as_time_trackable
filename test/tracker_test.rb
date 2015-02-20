@@ -28,6 +28,12 @@ class TrackerTest < ActiveSupport::TestCase
     assert_equal nil, @user.time_trackable
     assert_equal false, @user.time_tracking?(@task)
     assert_equal false, @user.time_tracking?(@task2)
+
+    @user2.stop_time_track(@task)
+    assert_equal false, @user2.time_tracking?
+    assert_equal nil, @user2.time_trackable
+    assert_equal false, @user2.time_tracking?(@task)
+    assert_equal false, @user2.time_tracking?(@task2)
   end
 
   test 'time_entries' do
