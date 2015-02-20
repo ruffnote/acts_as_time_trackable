@@ -51,7 +51,7 @@ class TrackableTest < ActsAsTimeTrackableTest
     @time_entry_2.stopped_at = 30.seconds.ago
     @time_entry_2.save
 
-    assert_equal @time_entry_1.duration + @time_entry_2.duration, @task.total_time
+    assert_equal (@time_entry_1.duration + @time_entry_2.duration).to_i, @task.total_time.to_i
     assert_equal '24:05:00', @task.formatted_total_time
   end
 end
