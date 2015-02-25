@@ -71,6 +71,7 @@ class TimeEntryTest < ActiveSupport::TestCase
     @time_entry = @user.time_entries.last
 
     assert_raise(ActiveRecord::RecordInvalid) { @time_entry.update!(stopped_at: 1.days.ago) }
+    assert_raise(ActiveRecord::RecordInvalid) { @time_entry.update!(started_at: 1.days.since) }
     assert_raise(ActiveRecord::RecordInvalid) { @time_entry.update!(stopped_at: 1.days.since) }
   end
 end

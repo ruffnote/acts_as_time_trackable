@@ -53,8 +53,8 @@ module ActsAsTimeTrackable
         end
 
         def time_must_be_before_now
-          errors.add(:started_at, :time_must_be_before_now) if started_at.present? && started_at > Time.now
-          errors.add(:stopped_at, :time_must_be_before_now) if stopped_at.present? && stopped_at > Time.now
+          errors.add(:started_at, :must_be_before_now) if started_at.present? && started_at > Time.now
+          errors.add(:stopped_at, :must_be_before_now) if stopped_at.present? && stopped_at > Time.now
         end
 
         def offset
