@@ -30,12 +30,12 @@ module ActsAsTimeTrackable
       end
 
       def apply_offset
-        self.started_at = started_at + offset
+        self.started_at = started_at + offset if started_at.present?
         self.stopped_at = stopped_at + offset if stopped?
       end
 
       def revert_offset
-        self.started_at = started_at - offset
+        self.started_at = started_at - offset if started_at.present?
         self.stopped_at = stopped_at - offset if stopped?
       end
 
