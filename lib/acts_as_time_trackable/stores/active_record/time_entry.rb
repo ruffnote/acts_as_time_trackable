@@ -13,6 +13,25 @@ module ActsAsTimeTrackable
       scope :time_tracking, -> { where(stopped_at: nil) }
       scope :stopped, -> { where.not(stopped_at: nil) }
 
+      class << self
+        def apply_offset(time)
+          time + offset if time.present?
+        end
+
+        def revert_offset(time)
+          time - offset if time.present?
+        end
+
+        def offset
+          case I18n.locale
+          when :ja
+            ActiveSupport::TimeZone.new('Asia/Tokyo').utc_offset
+          else
+            0
+          end
+        end
+      end
+
       def duration
         stopped_at_or_now - started_at
       end
@@ -30,13 +49,13 @@ module ActsAsTimeTrackable
       end
 
       def apply_offset
-        self.started_at = started_at + offset if started_at.present?
-        self.stopped_at = stopped_at + offset if stopped?
+        self.started_at = TimeEntry.apply_offset(started_at)
+        self.stopped_at = TimeEntry.apply_offset(stopped_at)
       end
 
       def revert_offset
-        self.started_at = started_at - offset if started_at.present?
-        self.stopped_at = stopped_at - offset if stopped?
+        self.started_at = TimeEntry.revert_offset(started_at)
+        self.stopped_at = TimeEntry.revert_offset(stopped_at)
       end
 
       private
@@ -55,15 +74,6 @@ module ActsAsTimeTrackable
         def time_must_be_before_now
           errors.add(:started_at, :must_be_before_now) if started_at.present? && started_at > Time.now
           errors.add(:stopped_at, :must_be_before_now) if stopped_at.present? && stopped_at > Time.now
-        end
-
-        def offset
-          case I18n.locale
-          when :ja
-            ActiveSupport::TimeZone.new('Asia/Tokyo').utc_offset
-          else
-            0
-          end
         end
     end
   end

@@ -36,9 +36,11 @@ class TimeEntryTest < ActiveSupport::TestCase
     @time_entry = @task.time_entries.first
     assert_equal @time_entry, TimeEntry.time_tracking.first
     assert_equal nil, TimeEntry.stopped.first
+    assert_equal false, @time_entry.stopped?
     @time_entry.stop
     assert_equal nil, TimeEntry.time_tracking.first
     assert_equal @time_entry, TimeEntry.stopped.first
+    assert_equal true, @time_entry.stopped?
   end
 
   test 'offset' do
