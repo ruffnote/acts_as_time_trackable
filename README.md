@@ -89,10 +89,10 @@ Logs
 @time_entry = @task.time_entries.first
 (@time_entry = @user.time_entries.first)
 
-@time.entry.time_trackable # => @task
-@time.entry.time_tracker # => @user
-@time.entry.started_at # => datetime
-@time.entry.stopped_at # => datetime
+@time_entry.time_trackable # => @task
+@time_entry.time_tracker # => @user
+@time_entry.started_at # => datetime
+@time_entry.stopped_at # => datetime
 @time_entry.duration # => stopped_at - started_at
 @time_entry.formatted_duration # => '00:00:01'
 

@@ -26,7 +26,6 @@ class TrackableTest < ActsAsTimeTrackableTest
   end
 
   test 'time_entries' do
-
     @user.start_time_track(@task)
     @user2.start_time_track(@task)
     assert_equal [@user, @user2], @task.time_entries.map { |te| te.time_tracker }
