@@ -13,7 +13,7 @@ module ActsAsTimeTrackable
       scope :time_tracking, -> { where(stopped_at: nil) }
       scope :stopped, -> { where.not(stopped_at: nil) }
 
-      cattr_accessor :format
+      cattr_accessor :default_format
 
       class << self
         def apply_offset(time)
@@ -39,7 +39,7 @@ module ActsAsTimeTrackable
       end
 
       def formatted_duration(format = nil)
-        format ||= self.format.presence || '%h:%m:%s'
+        format ||= default_format.presence || '%h:%m:%s'
         Time.diff(started_at, stopped_at_or_now, format)[:diff]
       end
 
