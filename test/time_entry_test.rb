@@ -24,22 +24,27 @@ class TimeEntryTest < ActiveSupport::TestCase
 
     @time_entry.started_at = 3.minutes.ago 
     @time_entry.stopped_at = 30.seconds.ago 
+    @time_entry.save!
     assert_equal '00:02:30', @time_entry.formatted_duration
 
     assert_equal '00:02', @time_entry.formatted_duration('%h:%m')
 
+    @user.start_time_track(@task)
+    @user.stop_time_track
+    @time_entry_2 = @user.time_entries.last
+
+    @time_entry_2.started_at = (3.minutes + 1.days).ago
+    @time_entry_2.stopped_at = 30.seconds.ago
+    @time_entry_2.save!
+    assert_equal '24:02:30', @time_entry_2.formatted_duration
+
+    assert_equal '24:02', @time_entry_2.formatted_duration('%h:%m')
+
     TimeEntry.default_format = '%h:%m'
     assert_equal '00:02', @time_entry.formatted_duration
+    assert_equal '24:02', @time_entry_2.formatted_duration
 
-    TimeEntry.default_format = '%h:%m:%s'
-    @time_entry.started_at = (3.minutes + 1.days).ago
-    @time_entry.stopped_at = 30.seconds.ago
-    assert_equal '24:02:30', @time_entry.formatted_duration
-
-    assert_equal '24:02', @time_entry.formatted_duration('%h:%m')
-
-    TimeEntry.default_format = '%h:%m'
-    assert_equal '24:02', @time_entry.formatted_duration
+    assert_equal ['00:02', '24:02'], TimeEntry.all.map { |t| t.formatted_duration }
   end
 
   test 'time_traking' do
