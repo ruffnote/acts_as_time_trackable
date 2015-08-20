@@ -45,8 +45,8 @@ module ActsAsTimeTrackable
         Time.diff(started_at, stopped_at_or_now, f)[:diff]
       end
 
-      def stop
-        update!(stopped_at: Time.now)
+      def stop(force = false)
+        update!(stopped_at: Time.now) if force || !stopped?
       end
 
       def stopped?
