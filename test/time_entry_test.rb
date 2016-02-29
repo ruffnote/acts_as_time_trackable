@@ -72,7 +72,7 @@ class TimeEntryTest < ActiveSupport::TestCase
     assert_equal 0, @time_entry.started_at - now
     assert_equal 0, @time_entry.stopped_at - now
 
-    I18n.locale = :ja
+    Time.zone = 'Tokyo'
 
     @time_entry.apply_offset
     assert_equal 32400, @time_entry.started_at - now

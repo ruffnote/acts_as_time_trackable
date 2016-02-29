@@ -27,12 +27,7 @@ module ActsAsTimeTrackable
         end
 
         def offset
-          case I18n.locale
-          when :ja
-            ActiveSupport::TimeZone.new('Asia/Tokyo').utc_offset
-          else
-            0
-          end
+          Time.zone.utc_offset
         end
       end
 
