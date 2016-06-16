@@ -12,6 +12,8 @@ class TimeTrackableGenerator < Rails::Generators::Base
     store = 'active_record'
     copy_file "#{store}/time_entry.rb", 'app/models/time_entry.rb'
     migration_template "#{store}/create_time_entries.rb", 'db/migrate/create_time_entries.rb'
+    sleep 1
+    migration_template "#{store}/add_duration_to_time_entries.rb", 'db/migrate/add_duration_to_time_entries.rb'
   end
 end
 

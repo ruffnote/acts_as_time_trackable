@@ -7,3 +7,4 @@ Example:
     This will create:
         app/models/time_entry.rb
         db/migrate/create_time_entries.rb
+        db/migrate/add_duration_to_time_entries.rb

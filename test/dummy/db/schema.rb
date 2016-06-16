@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140710070824) do
+ActiveRecord::Schema.define(version: 20160615064129) do
 
   create_table "tasks", force: true do |t|
     t.string   "name"
@@ -28,8 +28,10 @@ ActiveRecord::Schema.define(version: 20140710070824) do
     t.string   "time_tracker_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "duration",            default: 0, null: false
   end
 
+  add_index "time_entries", ["duration"], name: "index_time_entries_on_duration"
   add_index "time_entries", ["started_at"], name: "index_time_entries_on_started_at"
   add_index "time_entries", ["stopped_at"], name: "index_time_entries_on_stopped_at"
   add_index "time_entries", ["time_trackable_id", "time_trackable_type"], name: "index_time_entries_on_time_trackable"

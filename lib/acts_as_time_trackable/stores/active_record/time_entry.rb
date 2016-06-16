@@ -17,6 +17,8 @@ module ActsAsTimeTrackable
         '%h:%m:%s'
       end
 
+      after_validation :update_duration
+
       class << self
         def apply_offset(time)
           time + offset if time.present?
@@ -29,10 +31,6 @@ module ActsAsTimeTrackable
         def offset
           Time.zone.utc_offset
         end
-      end
-
-      def duration
-        stopped_at_or_now - started_at
       end
 
       def formatted_duration(format = nil)
@@ -74,6 +72,10 @@ module ActsAsTimeTrackable
         def time_must_be_before_now
           errors.add(:started_at, :must_be_before_now) if started_at.present? && started_at > Time.now
           errors.add(:stopped_at, :must_be_before_now) if stopped_at.present? && stopped_at > Time.now
+        end
+
+        def update_duration
+          self.duration = stopped_at_or_now - started_at
         end
     end
   end
