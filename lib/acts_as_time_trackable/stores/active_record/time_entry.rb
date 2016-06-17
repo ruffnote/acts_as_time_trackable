@@ -17,7 +17,7 @@ module ActsAsTimeTrackable
         '%h:%m:%s'
       end
 
-      after_validation :update_duration
+      before_save :update_duration
 
       class << self
         def apply_offset(time)
