@@ -56,6 +56,10 @@ module ActsAsTimeTrackable
         self.stopped_at = TimeEntry.revert_offset(stopped_at)
       end
 
+      def working_duration
+        stopped_at_or_now - started_at
+      end
+
       private
         def stopped_at_or_now
           (stopped_at.presence || Time.now)
@@ -75,7 +79,7 @@ module ActsAsTimeTrackable
         end
 
         def update_duration
-          self.duration = stopped_at_or_now - started_at
+          self.duration = working_duration
         end
     end
   end
