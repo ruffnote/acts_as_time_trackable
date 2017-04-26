@@ -12,6 +12,7 @@ module ActsAsTimeTrackable
       def acts_as_time_tracker(options = {})
         has_many :time_entries, as: :time_tracker, dependent: :destroy
 
+        include ActsAsTimeTrackable::Shared::LocalInstanceMethods
         include ActsAsTimeTrackable::Tracker::LocalInstanceMethods
       end
     end
@@ -48,7 +49,7 @@ module ActsAsTimeTrackable
       end
 
       def current_entry
-        time_entries.time_tracking.last
+        scoped_entries.time_tracking.last
       end
     end
   end

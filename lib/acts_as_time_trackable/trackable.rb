@@ -12,6 +12,7 @@ module ActsAsTimeTrackable
       def acts_as_time_trackable(options = {})
         has_many :time_entries, as: :time_trackable, dependent: :destroy
 
+        include ActsAsTimeTrackable::Shared::LocalInstanceMethods
         include ActsAsTimeTrackable::Trackable::LocalInstanceMethods
       end
     end
@@ -35,7 +36,7 @@ module ActsAsTimeTrackable
       end
 
       def total_time
-        time_entries.stopped.reduce(0) {|sum, e| sum + e.duration }
+        scoped_entries.stopped.reduce(0) {|sum, e| sum + e.duration }
       end
 
       def formatted_total_time(format = '%h:%m:%s')
@@ -43,7 +44,7 @@ module ActsAsTimeTrackable
       end
 
       def current_entries
-        time_entries.time_tracking
+        scoped_entries.time_tracking
       end
     end
   end
