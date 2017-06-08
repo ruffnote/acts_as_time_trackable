@@ -8,7 +8,6 @@ module ActsAsTimeTrackable
       validates :time_tracker, presence: true
       validates :started_at, presence: true
       validate :stopped_at_must_be_after_started_at
-      validate :time_must_be_before_now
 
       scope :time_tracking, -> { where(stopped_at: nil) }
       scope :stopped, -> { where.not(stopped_at: nil) }
@@ -71,11 +70,6 @@ module ActsAsTimeTrackable
           if started_at > stopped_at
             errors.add(:stopped_at, :must_be_after_the_started_at)
           end
-        end
-
-        def time_must_be_before_now
-          errors.add(:started_at, :must_be_before_now) if started_at.present? && started_at > Time.now
-          errors.add(:stopped_at, :must_be_before_now) if stopped_at.present? && stopped_at > Time.now
         end
 
         def update_duration
