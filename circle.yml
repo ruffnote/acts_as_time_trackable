@@ -1,4 +1,0 @@
-database:
-  override:
-    - cd test/dummy; bundle exec rake db:create db:migrate --trace
-
