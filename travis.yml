@@ -1,0 +1,19 @@
+language: ruby
+sudo: false
+cache: bundler
+
+# Bundler/RubyGems incompat on Ruby 2.5.0
+before_install: gem install bundler
+before_script: cd test/dummy; bundle exec rake db:create db:migrate --trace
+
+rvm:
+  - 2.2
+  - 2.3
+  - 2.4
+  - 2.5
+  - ruby-head
+
+matrix:
+  allow_failures:
+    - rvm: ruby-head
+  fast_finish: true
