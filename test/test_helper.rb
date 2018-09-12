@@ -4,9 +4,6 @@ SimpleCov.start do
   add_filter "/generators/"
 end
 
-require "codeclimate-test-reporter"
-CodeClimate::TestReporter.start
-
 # Configure Rails Environment
 ENV["RAILS_ENV"] = "test"
 
