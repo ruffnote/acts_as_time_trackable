@@ -10,3 +10,4 @@ test/dummy/.sass-cache
 *~
 .*.sw*
 coverage/
+Gemfile.lock
