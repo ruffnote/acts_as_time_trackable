@@ -40,6 +40,10 @@ class TrackerTest < ActiveSupport::TestCase
     @user.start_time_track(@task)
     @user.start_time_track(@task2)
     assert_equal [@task, @task2], @user.time_entries.map { |te| te.time_trackable }
+
+    entry1 = @user.start_time_track(@task)
+    entry2 = @user.start_time_track(@task)
+    assert_equal entry1, entry2
   end
 end
 
